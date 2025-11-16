@@ -4,8 +4,8 @@ jobs:
   test:
     strategy:
       matrix:
-        go-versions: ['1.24']
-        platform: [ubuntu-22.04]
+        go-versions: ['1.25']
+        platform: [ubuntu-latest]
         environment-variables: [build/config/plain.sh, build/config/libpfm4.sh, build/config/libipmctl.sh]
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 30
@@ -31,8 +31,8 @@ jobs:
   test-integration:
     strategy:
       matrix:
-        go-versions: ['1.24']
-        platform: [ubuntu-22.04]
+        go-versions: ['1.25']
+        platform: [ubuntu-latest]
         environment-variables: [build/config/plain.sh, build/config/libpfm4.sh, build/config/libipmctl.sh]
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 30
