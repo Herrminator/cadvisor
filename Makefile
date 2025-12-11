@@ -13,7 +13,7 @@
 # limitations under the License.
 
 GO := go
-GOLANGCI_VER := latest
+GOLANGCI_VER := 2.7.2
 GO_TEST ?= $(GO) test $(or $(GO_FLAGS),-race)
 arch ?= $(shell go env GOARCH)
 
