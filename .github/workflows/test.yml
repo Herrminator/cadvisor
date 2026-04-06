@@ -64,7 +64,7 @@ jobs:
         source ${{ matrix.environment-variables }}
         make docker-test-integration
     - name: Upload cAdvisor log file
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       if: failure()
       with:
         name: cadvisor-${{ matrix.debian-version }}.log
@@ -87,7 +87,7 @@ jobs:
         source build/config/crio.sh
         make docker-test-integration-crio
     - name: Upload cAdvisor log file
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       if: failure()
       with:
         name: cadvisor-crio.log
