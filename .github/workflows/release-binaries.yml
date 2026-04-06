@@ -25,10 +25,10 @@ jobs:
           fetch-depth: 0  # Fetch all history for proper versioning
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: linux/amd64,linux/arm64
 
@@ -63,7 +63,7 @@ jobs:
           find . -name "cadvisor*" -type f -not -name "*.sha256" -exec sh -c 'sha256sum "$1" > "$1.sha256"' _ {} \;
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: cadvisor-linux-${{ matrix.arch }}
           path: |
@@ -92,7 +92,7 @@ jobs:
           INPUTS_TAG: ${{ inputs.tag }}
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
 
