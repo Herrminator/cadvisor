@@ -5,7 +5,7 @@ jobs:
     strategy:
       matrix:
         go-versions: ['1.25']
-        platform: [ubuntu-latest]
+        platform: [ubuntu-24.04]
         environment-variables: [build/config/plain.sh, build/config/libpfm4.sh, build/config/libipmctl.sh]
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 30
