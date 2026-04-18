@@ -34,7 +34,7 @@ jobs:
         include:
           # bookworm: all environment configs
           - go-versions: '1.25'
-        platform: [ubuntu-24.04]
+            platform: ubuntu-24.04
             environment-variables: build/config/plain.sh
             debian-version: bookworm
           - go-versions: '1.25'
