@@ -16,7 +16,7 @@ jobs:
         go-version: ${{ matrix.go-versions }}
         check-latest: true
     - name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Run presubmit checks
       run: |
         source ${{ matrix.environment-variables }}
@@ -54,7 +54,7 @@ jobs:
     timeout-minutes: 30
     steps:
     - name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Run integration tests
       env:
         GOLANG_VERSION: ${{ matrix.go-versions }}
@@ -78,7 +78,7 @@ jobs:
     timeout-minutes: 30
     steps:
     - name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: Run CRI-O integration tests
       env:
         GOLANG_VERSION: ${{ matrix.go-versions }}
