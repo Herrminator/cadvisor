@@ -76,7 +76,7 @@ function run_tests() {
     --cgroupns=host \
     --pid=host \
     --entrypoint="" \
-    gcr.io/k8s-staging-test-infra/bootstrap:v20251209-855adc2699 \
+    gcr.io/k8s-staging-test-infra/bootstrap:${BOOTSTRAP_TAG} \
     bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y $PACKAGES curl conntrack iptables dbus && \
@@ -199,6 +199,8 @@ EOF
     CADVISOR_ARGS='$CADVISOR_ARGS' /usr/local/bin/runner.sh build/integration-crio.sh"
 }
 
+BOOTSTRAP_TAG=${BOOTSTRAP_TAG:-$(curl -sSfL https://gcr.io/v2/k8s-staging-test-infra/bootstrap/tags/list \
+  | grep -oE 'v[0-9]{8}-[0-9a-f]+' | sort -ru | head -n1)}
 # Note: -race requires CGO, but cross-compilation with CGO is problematic
 # So we use -tags=netgo without -race for cross-platform compatibility
 GO_FLAGS=${GO_FLAGS:-"-tags=netgo"}

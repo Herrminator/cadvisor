@@ -61,13 +61,15 @@ function run_tests() {
     --privileged \
     --cap-add="sys_admin" \
     --entrypoint="" \
-    gcr.io/k8s-staging-test-infra/bootstrap:v20251209-855adc2699 \
+    gcr.io/k8s-staging-test-infra/bootstrap:${BOOTSTRAP_TAG} \
     bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt install -y $PACKAGES && \
     CADVISOR_ARGS=$CADVISOR_ARGS /usr/local/bin/runner.sh build/integration.sh"
 }
 
+BOOTSTRAP_TAG=${BOOTSTRAP_TAG:-$(curl -sSfL https://gcr.io/v2/k8s-staging-test-infra/bootstrap/tags/list \
+  | grep -oE 'v[0-9]{8}-[0-9a-f]+' | sort -ru | head -n1)}
 GO_FLAGS=${GO_FLAGS:-"-tags=netgo -race"}
 PACKAGES=${PACKAGES:-"sudo"}
 BUILD_PACKAGES=${BUILD_PACKAGES:-}
